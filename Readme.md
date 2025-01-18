@@ -1,10 +1,10 @@
 ## # equivGNN demo:
-equivGNN: Expected output in ./equivGNN/pre-trained/5fold/  
-test: python -W ignore train_complex_5fold.py 5fold/test simpleads 5e-3 1e-5 100 0
+test: python -W ignore train_complex_5fold.py 5fold/test simpleads 5e-3 1e-5 100 0  
+Expected output in ./equivGNN/pre-trained/5fold/  
 
 ## # Datasets:
 ./equivGNN/data/  
-data preprocessing: prepare_dataset.ipynb
+data preprocessing: prepare_dataset.py
 
 ## # pre-trained models: 
 ./equivGNN/pre-trained/ 
