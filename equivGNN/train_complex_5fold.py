@@ -39,7 +39,7 @@ logger.info(f'workdir: {work_dir}, adsorbate: {adsorbate}')
 data = torch.load(f'./data/dataset_{adsorbate}.pt')
 
 import json
-with open('./atom_init.json', 'r') as f:
+with open('./data/atom_init.json', 'r') as f:
     key = json.load(f)
 for d in tqdm(data):
     d['x'] = torch.tensor([key[str(int(i))] for i in d['atom_num']], dtype=default_dtype)           # cgcnn features: 92
