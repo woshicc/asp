@@ -4,7 +4,7 @@ e.g. python -W ignore train_complex_5fold.py 5fold/simpleads simpleads 5e-3 1e-5
 
 ## # Datasets:
 ./equivGNN/data/  
-data preprocessing: e.g. 
+data preprocessing: prepare_dataset.ipynb
 
 ## # pre-trained models: 
 ./equivGNN/pre-trained/ 
