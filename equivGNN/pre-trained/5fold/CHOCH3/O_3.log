@@ -1,0 +1,154 @@
+2024-12-20 11:03:42,977 - INFO - workdir: ./pre-trained/5fold/CHOCH3, adsorbate: O
+2024-12-20 11:03:44,580 - INFO - dataset size: 5739, batch size: 8
+2024-12-20 11:03:44,580 - INFO - train/valid/test size: 4591/1148/0
+2024-12-20 11:03:46,295 - INFO - equivGNN(
+  (atom_embedding): Linear(92x0e -> 128x0e | 11776 weights)
+  (mp): MessagePassing(
+    (layers): ModuleList(
+      (0): Compose(
+        (first): Convolution(
+          (linear_1): Linear(128x0e -> 128x0e | 16384 weights)
+          (fc): FullyConnectedNet[8, 64, 64, 384]
+          (tp): TensorProduct(128x0e x 1x0e+1x1o+1x2e -> 128x0e+128x1o+128x2e | 384 paths | 384 weights)
+          (linear_2): Linear(128x0e+128x1o+128x2e -> 192x0e+64x1o+64x2e | 40960 weights)
+          (sc): FullyConnectedTensorProduct(128x0e x 26x0e -> 192x0e+64x1o+64x2e | 638976 paths | 638976 weights)
+        )
+        (second): Gate (192x0e+64x1o+64x2e -> 64x0e+64x1o+64x2e)
+      )
+      (1): Compose(
+        (first): Convolution(
+          (linear_1): Linear(64x0e+64x1o+64x2e -> 64x0e+64x1o+64x2e | 12288 weights)
+          (fc): FullyConnectedNet[8, 64, 64, 960]
+          (tp): TensorProduct(64x0e+64x1o+64x2e x 1x0e+1x1o+1x2e -> 192x0e+256x1o+128x1e+128x2o+256x2e | 960 paths | 960 weights)
+          (linear_2): Linear(192x0e+256x1o+128x1e+128x2o+256x2e -> 320x0e+64x1o+64x1e+64x2o+64x2e | 110592 weights)
+          (sc): FullyConnectedTensorProduct(64x0e+64x1o+64x2e x 26x0e -> 320x0e+64x1o+64x1e+64x2o+64x2e | 745472 paths | 745472 weights)
+        )
+        (second): Gate (320x0e+64x1o+64x1e+64x2o+64x2e -> 64x0e+64x1o+64x1e+64x2o+64x2e)
+      )
+      (2): Compose(
+        (first): Convolution(
+          (linear_1): Linear(64x0e+64x1o+64x1e+64x2o+64x2e -> 64x0e+64x1o+64x1e+64x2o+64x2e | 20480 weights)
+          (fc): FullyConnectedNet[8, 64, 64, 1728]
+          (tp): TensorProduct(64x0e+64x1o+64x1e+64x2o+64x2e x 1x0e+1x1o+1x2e -> 128x0o+192x0e+384x1o+320x1e+320x2o+384x2e | 1728 paths | 1728 weights)
+          (linear_2): Linear(128x0o+192x0e+384x1o+320x1e+320x2o+384x2e -> 64x0o+320x0e+64x1o+64x1e+64x2o+64x2e | 159744 weights)
+          (sc): FullyConnectedTensorProduct(64x0e+64x1o+64x1e+64x2o+64x2e x 26x0e -> 64x0o+320x0e+64x1o+64x1e+64x2o+64x2e | 958464 paths | 958464 weights)
+        )
+        (second): Gate (64x0o+320x0e+64x1o+64x1e+64x2o+64x2e -> 64x0o+64x0e+64x1o+64x1e+64x2o+64x2e)
+      )
+      (3): Convolution(
+        (linear_1): Linear(64x0o+64x0e+64x1o+64x1e+64x2o+64x2e -> 64x0o+64x0e+64x1o+64x1e+64x2o+64x2e | 24576 weights)
+        (fc): FullyConnectedNet[8, 64, 64, 192]
+        (tp): TensorProduct(64x0o+64x0e+64x1o+64x1e+64x2o+64x2e x 1x0e+1x1o+1x2e -> 192x0e | 192 paths | 192 weights)
+        (linear_2): Linear(192x0e -> 128x0e | 24576 weights)
+        (sc): FullyConnectedTensorProduct(64x0o+64x0e+64x1o+64x1e+64x2o+64x2e x 26x0e -> 128x0e | 212992 paths | 212992 weights)
+      )
+    )
+  )
+  (readout): Sequential(
+    (0): Linear(128x0e -> 128x0e | 16384 weights)
+    (1): SiLU()
+    (2): Linear(128x0e -> 1x0e | 128 weights)
+  )
+)
+2024-12-20 11:03:48,731 - INFO - initial lr: 0.000200000, meanAE: 1.5807909825401505
+2024-12-20 11:04:12,249 - INFO - Epoch 1, train_loss: 2.545795, val_loss: 1.799475, val_mae: 1.035944
+2024-12-20 11:04:36,369 - INFO - Epoch 2, train_loss: 1.515325, val_loss: 1.298731, val_mae: 0.822881
+2024-12-20 11:04:59,943 - INFO - Epoch 3, train_loss: 1.017099, val_loss: 0.978061, val_mae: 0.721016
+2024-12-20 11:05:24,087 - INFO - Epoch 4, train_loss: 0.759123, val_loss: 0.646075, val_mae: 0.570397
+2024-12-20 11:05:46,525 - INFO - Epoch 5, train_loss: 0.466419, val_loss: 0.397589, val_mae: 0.456833
+2024-12-20 11:06:10,102 - INFO - Epoch 6, train_loss: 0.288111, val_loss: 0.238626, val_mae: 0.356112
+2024-12-20 11:06:33,459 - INFO - Epoch 7, train_loss: 0.188678, val_loss: 0.175074, val_mae: 0.313216
+2024-12-20 11:06:56,480 - INFO - Epoch 8, train_loss: 0.146905, val_loss: 0.156789, val_mae: 0.295179
+2024-12-20 11:07:19,632 - INFO - Epoch 9, train_loss: 0.117632, val_loss: 0.125862, val_mae: 0.269672
+2024-12-20 11:07:41,683 - INFO - Epoch 10, train_loss: 0.099821, val_loss: 0.122005, val_mae: 0.258718
+2024-12-20 11:08:04,869 - INFO - Epoch 11, train_loss: 0.088253, val_loss: 0.099708, val_mae: 0.239887
+2024-12-20 11:08:27,596 - INFO - Epoch 12, train_loss: 0.082543, val_loss: 0.094963, val_mae: 0.232885
+2024-12-20 11:08:50,015 - INFO - Epoch 13, train_loss: 0.083686, val_loss: 0.079071, val_mae: 0.205405
+2024-12-20 11:09:12,409 - INFO - Epoch 14, train_loss: 0.068654, val_loss: 0.085820, val_mae: 0.221572
+2024-12-20 11:09:34,612 - INFO - Epoch 15, train_loss: 0.072690, val_loss: 0.085951, val_mae: 0.214350
+2024-12-20 11:09:57,359 - INFO - Epoch 16, train_loss: 0.065549, val_loss: 0.075704, val_mae: 0.203025
+2024-12-20 11:10:20,346 - INFO - Epoch 17, train_loss: 0.059921, val_loss: 0.079195, val_mae: 0.205955
+2024-12-20 11:10:43,156 - INFO - Epoch 18, train_loss: 0.061821, val_loss: 0.073799, val_mae: 0.203902
+2024-12-20 11:11:05,980 - INFO - Epoch 19, train_loss: 0.063777, val_loss: 0.065701, val_mae: 0.188394
+2024-12-20 11:11:28,677 - INFO - Epoch 20, train_loss: 0.048737, val_loss: 0.067904, val_mae: 0.188419
+2024-12-20 11:11:51,928 - INFO - Epoch 21, train_loss: 0.053101, val_loss: 0.064299, val_mae: 0.184965
+2024-12-20 11:12:14,780 - INFO - Epoch 22, train_loss: 0.050158, val_loss: 0.067730, val_mae: 0.185834
+2024-12-20 11:12:37,631 - INFO - Epoch 23, train_loss: 0.058772, val_loss: 0.056006, val_mae: 0.173427
+2024-12-20 11:13:00,861 - INFO - Epoch 24, train_loss: 0.053208, val_loss: 0.049893, val_mae: 0.161710
+2024-12-20 11:13:24,919 - INFO - Epoch 25, train_loss: 0.041735, val_loss: 0.053823, val_mae: 0.169078
+2024-12-20 11:13:47,062 - INFO - Epoch 26, train_loss: 0.042750, val_loss: 0.061068, val_mae: 0.182283
+2024-12-20 11:14:10,401 - INFO - Epoch 27, train_loss: 0.037156, val_loss: 0.075198, val_mae: 0.211173
+2024-12-20 11:14:33,441 - INFO - Epoch 28, train_loss: 0.046217, val_loss: 0.050313, val_mae: 0.164966
+2024-12-20 11:14:55,983 - INFO - Epoch 29, train_loss: 0.034110, val_loss: 0.053583, val_mae: 0.168153
+2024-12-20 11:15:18,478 - INFO - Epoch 30, train_loss: 0.033587, val_loss: 0.053403, val_mae: 0.169136
+2024-12-20 11:15:40,287 - INFO - Epoch 31, train_loss: 0.032585, val_loss: 0.054919, val_mae: 0.175693
+2024-12-20 11:16:03,253 - INFO - Epoch 32, train_loss: 0.031487, val_loss: 0.047860, val_mae: 0.154918
+2024-12-20 11:16:26,467 - INFO - Epoch 33, train_loss: 0.036850, val_loss: 0.041042, val_mae: 0.140958
+2024-12-20 11:16:49,033 - INFO - Epoch 34, train_loss: 0.027236, val_loss: 0.069289, val_mae: 0.192150
+2024-12-20 11:17:11,211 - INFO - Epoch 35, train_loss: 0.025377, val_loss: 0.043970, val_mae: 0.147243
+2024-12-20 11:17:33,158 - INFO - Epoch 36, train_loss: 0.027209, val_loss: 0.046409, val_mae: 0.150358
+2024-12-20 11:17:55,937 - INFO - Epoch 37, train_loss: 0.024956, val_loss: 0.036256, val_mae: 0.134947
+2024-12-20 11:18:18,506 - INFO - Epoch 38, train_loss: 0.024119, val_loss: 0.049775, val_mae: 0.156832
+2024-12-20 11:18:41,129 - INFO - Epoch 39, train_loss: 0.021767, val_loss: 0.046466, val_mae: 0.155174
+2024-12-20 11:19:03,335 - INFO - Epoch 40, train_loss: 0.019775, val_loss: 0.040225, val_mae: 0.141694
+2024-12-20 11:19:25,901 - INFO - Epoch 41, train_loss: 0.018910, val_loss: 0.046538, val_mae: 0.149239
+2024-12-20 11:19:49,072 - INFO - Epoch 42, train_loss: 0.019439, val_loss: 0.038638, val_mae: 0.139454
+2024-12-20 11:20:11,952 - INFO - Epoch 43, train_loss: 0.016646, val_loss: 0.041453, val_mae: 0.142887
+2024-12-20 11:20:35,713 - INFO - Epoch 44, train_loss: 0.021091, val_loss: 0.035906, val_mae: 0.130335
+2024-12-20 11:20:58,115 - INFO - Epoch 45, train_loss: 0.015505, val_loss: 0.039554, val_mae: 0.142169
+2024-12-20 11:21:21,836 - INFO - Epoch 46, train_loss: 0.015060, val_loss: 0.034257, val_mae: 0.125176
+2024-12-20 11:21:44,216 - INFO - Epoch 47, train_loss: 0.013475, val_loss: 0.036694, val_mae: 0.142045
+2024-12-20 11:22:06,891 - INFO - Epoch 48, train_loss: 0.012428, val_loss: 0.035874, val_mae: 0.129594
+2024-12-20 11:22:29,326 - INFO - Epoch 49, train_loss: 0.012893, val_loss: 0.029504, val_mae: 0.116467
+2024-12-20 11:22:51,887 - INFO - Epoch 50, train_loss: 0.012206, val_loss: 0.036835, val_mae: 0.135942
+2024-12-20 11:23:14,001 - INFO - Epoch 51, train_loss: 0.015171, val_loss: 0.031268, val_mae: 0.119080
+2024-12-20 11:23:35,694 - INFO - Epoch 52, train_loss: 0.011267, val_loss: 0.034688, val_mae: 0.133751
+2024-12-20 11:23:58,517 - INFO - Epoch 53, train_loss: 0.011454, val_loss: 0.033290, val_mae: 0.125606
+2024-12-20 11:24:20,786 - INFO - Epoch 54, train_loss: 0.009235, val_loss: 0.029590, val_mae: 0.115494
+2024-12-20 11:24:42,967 - INFO - Epoch 55, train_loss: 0.007432, val_loss: 0.027891, val_mae: 0.112658
+2024-12-20 11:25:05,339 - INFO - Epoch 56, train_loss: 0.006954, val_loss: 0.026133, val_mae: 0.106855
+2024-12-20 11:25:27,655 - INFO - Epoch 57, train_loss: 0.006733, val_loss: 0.027471, val_mae: 0.110344
+2024-12-20 11:25:49,607 - INFO - Epoch 58, train_loss: 0.007893, val_loss: 0.029955, val_mae: 0.116208
+2024-12-20 11:26:11,887 - INFO - Epoch 59, train_loss: 0.007291, val_loss: 0.026834, val_mae: 0.108561
+2024-12-20 11:26:34,487 - INFO - Epoch 60, train_loss: 0.006436, val_loss: 0.029208, val_mae: 0.113645
+2024-12-20 11:26:56,877 - INFO - Epoch 61, train_loss: 0.005921, val_loss: 0.026978, val_mae: 0.111042
+2024-12-20 11:27:19,181 - INFO - Epoch 62, train_loss: 0.004877, val_loss: 0.026366, val_mae: 0.104618
+2024-12-20 11:27:41,656 - INFO - Epoch 63, train_loss: 0.004889, val_loss: 0.025295, val_mae: 0.102775
+2024-12-20 11:28:04,653 - INFO - Epoch 64, train_loss: 0.004541, val_loss: 0.023863, val_mae: 0.099264
+2024-12-20 11:28:28,144 - INFO - Epoch 65, train_loss: 0.004399, val_loss: 0.025468, val_mae: 0.104438
+2024-12-20 11:28:51,137 - INFO - Epoch 66, train_loss: 0.004106, val_loss: 0.024511, val_mae: 0.101140
+2024-12-20 11:29:15,024 - INFO - Epoch 67, train_loss: 0.003425, val_loss: 0.024830, val_mae: 0.100431
+2024-12-20 11:29:37,292 - INFO - Epoch 68, train_loss: 0.003104, val_loss: 0.024787, val_mae: 0.101776
+2024-12-20 11:29:59,830 - INFO - Epoch 69, train_loss: 0.002862, val_loss: 0.023108, val_mae: 0.094133
+2024-12-20 11:30:22,627 - INFO - Epoch 70, train_loss: 0.002511, val_loss: 0.023167, val_mae: 0.094162
+2024-12-20 11:30:45,743 - INFO - Epoch 71, train_loss: 0.002422, val_loss: 0.023497, val_mae: 0.095496
+2024-12-20 11:31:08,183 - INFO - Epoch 72, train_loss: 0.001941, val_loss: 0.022590, val_mae: 0.092321
+2024-12-20 11:31:30,046 - INFO - Epoch 73, train_loss: 0.001859, val_loss: 0.021713, val_mae: 0.090660
+2024-12-20 11:31:52,703 - INFO - Epoch 74, train_loss: 0.001727, val_loss: 0.022560, val_mae: 0.093594
+2024-12-20 11:32:14,753 - INFO - Epoch 75, train_loss: 0.001341, val_loss: 0.021788, val_mae: 0.089529
+2024-12-20 11:32:36,843 - INFO - Epoch 76, train_loss: 0.001223, val_loss: 0.022372, val_mae: 0.092076
+2024-12-20 11:32:58,997 - INFO - Epoch 77, train_loss: 0.001004, val_loss: 0.021865, val_mae: 0.088732
+2024-12-20 11:33:21,491 - INFO - Epoch 78, train_loss: 0.000929, val_loss: 0.021770, val_mae: 0.090574
+2024-12-20 11:33:43,683 - INFO - Epoch 79, train_loss: 0.000815, val_loss: 0.021996, val_mae: 0.090096
+2024-12-20 11:34:06,066 - INFO - Epoch 80, train_loss: 0.000720, val_loss: 0.022090, val_mae: 0.090967
+2024-12-20 11:34:28,647 - INFO - Epoch 81, train_loss: 0.000606, val_loss: 0.021755, val_mae: 0.088906
+2024-12-20 11:34:50,793 - INFO - Epoch 82, train_loss: 0.000519, val_loss: 0.021222, val_mae: 0.087151
+2024-12-20 11:35:13,244 - INFO - Epoch 83, train_loss: 0.000428, val_loss: 0.021422, val_mae: 0.087545
+2024-12-20 11:35:35,582 - INFO - Epoch 84, train_loss: 0.000390, val_loss: 0.021765, val_mae: 0.088701
+2024-12-20 11:35:59,147 - INFO - Epoch 85, train_loss: 0.000325, val_loss: 0.021487, val_mae: 0.087806
+2024-12-20 11:36:22,382 - INFO - Epoch 86, train_loss: 0.000268, val_loss: 0.021722, val_mae: 0.087842
+2024-12-20 11:36:45,460 - INFO - Epoch 87, train_loss: 0.000226, val_loss: 0.021596, val_mae: 0.087587
+2024-12-20 11:37:09,529 - INFO - Epoch 88, train_loss: 0.000194, val_loss: 0.021308, val_mae: 0.086914
+2024-12-20 11:37:32,021 - INFO - Epoch 89, train_loss: 0.000172, val_loss: 0.021479, val_mae: 0.087545
+2024-12-20 11:37:54,453 - INFO - Epoch 90, train_loss: 0.000147, val_loss: 0.021484, val_mae: 0.087276
+2024-12-20 11:38:17,483 - INFO - Epoch 91, train_loss: 0.000132, val_loss: 0.021492, val_mae: 0.087202
+2024-12-20 11:38:40,430 - INFO - Epoch 92, train_loss: 0.000113, val_loss: 0.021410, val_mae: 0.086949
+2024-12-20 11:39:02,802 - INFO - Epoch 93, train_loss: 0.000098, val_loss: 0.021494, val_mae: 0.087014
+2024-12-20 11:39:24,819 - INFO - Epoch 94, train_loss: 0.000089, val_loss: 0.021433, val_mae: 0.086874
+2024-12-20 11:39:47,273 - INFO - Epoch 95, train_loss: 0.000081, val_loss: 0.021430, val_mae: 0.086932
+2024-12-20 11:40:09,400 - INFO - Epoch 96, train_loss: 0.000075, val_loss: 0.021439, val_mae: 0.086846
+2024-12-20 11:40:31,608 - INFO - Epoch 97, train_loss: 0.000070, val_loss: 0.021473, val_mae: 0.086903
+2024-12-20 11:40:53,710 - INFO - Epoch 98, train_loss: 0.000066, val_loss: 0.021435, val_mae: 0.086835
+2024-12-20 11:41:16,254 - INFO - Epoch 99, train_loss: 0.000064, val_loss: 0.021447, val_mae: 0.086843
+2024-12-20 11:41:38,219 - INFO - Epoch 100, train_loss: 0.000062, val_loss: 0.021448, val_mae: 0.086841
+2024-12-20 11:41:40,074 - INFO - Test MAE: 0.086835 with best model at Epoch 98
