@@ -1,0 +1,54 @@
+2025-05-17 20:57:36,701 - INFO - workdir: ./pre-trained/5fold/test, adsorbate: simpleads
+2025-05-17 20:57:37,518 - INFO - dataset size: 1422, batch size: 8
+2025-05-17 20:57:37,518 - INFO - train/valid/test size: 1137/285/0
+2025-05-17 20:57:39,608 - INFO - equivGNN(
+  (atom_embedding): Linear(92x0e -> 128x0e | 11776 weights)
+  (mp): MessagePassing(
+    (layers): ModuleList(
+      (0): Compose(
+        (first): Convolution(
+          (linear_1): Linear(128x0e -> 128x0e | 16384 weights)
+          (fc): FullyConnectedNet[8, 64, 64, 384]
+          (tp): TensorProduct(128x0e x 1x0e+1x1o+1x2e -> 128x0e+128x1o+128x2e | 384 paths | 384 weights)
+          (linear_2): Linear(128x0e+128x1o+128x2e -> 192x0e+64x1o+64x2e | 40960 weights)
+          (sc): FullyConnectedTensorProduct(128x0e x 26x0e -> 192x0e+64x1o+64x2e | 638976 paths | 638976 weights)
+        )
+        (second): Gate (192x0e+64x1o+64x2e -> 64x0e+64x1o+64x2e)
+      )
+      (1): Compose(
+        (first): Convolution(
+          (linear_1): Linear(64x0e+64x1o+64x2e -> 64x0e+64x1o+64x2e | 12288 weights)
+          (fc): FullyConnectedNet[8, 64, 64, 960]
+          (tp): TensorProduct(64x0e+64x1o+64x2e x 1x0e+1x1o+1x2e -> 192x0e+256x1o+128x1e+128x2o+256x2e | 960 paths | 960 weights)
+          (linear_2): Linear(192x0e+256x1o+128x1e+128x2o+256x2e -> 320x0e+64x1o+64x1e+64x2o+64x2e | 110592 weights)
+          (sc): FullyConnectedTensorProduct(64x0e+64x1o+64x2e x 26x0e -> 320x0e+64x1o+64x1e+64x2o+64x2e | 745472 paths | 745472 weights)
+        )
+        (second): Gate (320x0e+64x1o+64x1e+64x2o+64x2e -> 64x0e+64x1o+64x1e+64x2o+64x2e)
+      )
+      (2): Compose(
+        (first): Convolution(
+          (linear_1): Linear(64x0e+64x1o+64x1e+64x2o+64x2e -> 64x0e+64x1o+64x1e+64x2o+64x2e | 20480 weights)
+          (fc): FullyConnectedNet[8, 64, 64, 1728]
+          (tp): TensorProduct(64x0e+64x1o+64x1e+64x2o+64x2e x 1x0e+1x1o+1x2e -> 128x0o+192x0e+384x1o+320x1e+320x2o+384x2e | 1728 paths | 1728 weights)
+          (linear_2): Linear(128x0o+192x0e+384x1o+320x1e+320x2o+384x2e -> 64x0o+320x0e+64x1o+64x1e+64x2o+64x2e | 159744 weights)
+          (sc): FullyConnectedTensorProduct(64x0e+64x1o+64x1e+64x2o+64x2e x 26x0e -> 64x0o+320x0e+64x1o+64x1e+64x2o+64x2e | 958464 paths | 958464 weights)
+        )
+        (second): Gate (64x0o+320x0e+64x1o+64x1e+64x2o+64x2e -> 64x0o+64x0e+64x1o+64x1e+64x2o+64x2e)
+      )
+      (3): Convolution(
+        (linear_1): Linear(64x0o+64x0e+64x1o+64x1e+64x2o+64x2e -> 64x0o+64x0e+64x1o+64x1e+64x2o+64x2e | 24576 weights)
+        (fc): FullyConnectedNet[8, 64, 64, 192]
+        (tp): TensorProduct(64x0o+64x0e+64x1o+64x1e+64x2o+64x2e x 1x0e+1x1o+1x2e -> 192x0e | 192 paths | 192 weights)
+        (linear_2): Linear(192x0e -> 128x0e | 24576 weights)
+        (sc): FullyConnectedTensorProduct(64x0o+64x0e+64x1o+64x1e+64x2o+64x2e x 26x0e -> 128x0e | 212992 paths | 212992 weights)
+      )
+    )
+  )
+  (readout): Sequential(
+    (0): Linear(128x0e -> 128x0e | 16384 weights)
+    (1): SiLU()
+    (2): Linear(128x0e -> 1x0e | 128 weights)
+  )
+)
+2025-05-17 20:57:42,501 - INFO - initial lr: 0.000200000, meanAE: 1.1595643589897522
+2025-05-17 20:58:08,200 - INFO - Epoch 1, train_loss: 1.402671, val_loss: 0.833131, val_mae: 0.693481

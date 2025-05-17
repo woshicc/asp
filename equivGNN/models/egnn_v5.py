@@ -15,7 +15,11 @@ class equivGNN(torch.nn.Module):
         irreps_node_attr: str = '16x0e',
         irreps_in: str = '128x0e',
         irreps_out: str = '128x0e',
+        irreps_node_hidden: str = None,
+        irreps_linear_hidden: str = '128x0e',
         number_of_basis: int = 8,
+        radial_layers: int = 2,
+        radial_neurons: int = 64,
         num_neighbors: int = 10,
         max_radius: int = 4.25,
         layers: int = 3,
@@ -32,13 +36,16 @@ class equivGNN(torch.nn.Module):
         self.pool_nodes = pool_nodes
 
         self.atom_embedding = Linear(irreps_node_inputs,irreps_in)
-        irreps_node_hidden = o3.Irreps([(mul, (l, p)) for l in range(lmax + 1) for p in [-1, 1]])
+        if irreps_node_hidden is not None:
+            irreps_node_hidden = o3.Irreps(irreps_node_hidden)
+        else:
+            irreps_node_hidden = o3.Irreps([(mul, (l, p)) for l in range(lmax + 1) for p in [-1, 1]])
 
         self.mp = MessagePassing(
             irreps_node_sequence=[irreps_in] + layers * [irreps_node_hidden] + [irreps_out],
             irreps_node_attr=irreps_node_attr,
             irreps_edge_attr=o3.Irreps.spherical_harmonics(lmax),
-            fc_neurons=[self.number_of_basis, 64,64],
+            fc_neurons=[self.number_of_basis]+radial_layers*[radial_neurons],
             num_neighbors=num_neighbors,
             use_sc=use_sc,
         )
@@ -47,8 +54,8 @@ class equivGNN(torch.nn.Module):
         self.irreps_out = self.mp.irreps_node_output
 
         self.readout = torch.nn.Sequential(
-            Linear(self.irreps_out, self.irreps_out), torch.nn.SiLU(),
-            Linear(self.irreps_out, '0e')
+            Linear(self.irreps_out, irreps_linear_hidden), torch.nn.SiLU(),
+            Linear(irreps_linear_hidden, '0e')
             )
 
     def forward(self, data: Union[torch_geometric.data.Data, Dict[str, torch.Tensor]]) -> torch.Tensor:
@@ -105,8 +112,8 @@ class MessagePassing(torch.nn.Module):
         irreps_node_sequence,
         irreps_node_attr,
         irreps_edge_attr,
-        fc_neurons,
         num_neighbors,
+        fc_neurons,
         use_sc,
     ) -> None:
         super().__init__()
@@ -284,7 +291,8 @@ class Convolution(torch.nn.Module):
 
         if self.sc is not None:
             node_self_connection = self.sc(node_input, node_attr)
-            node_features += node_self_connection
+            # node_features += node_self_connection
+            node_features = node_features + node_self_connection
 
         return node_features
 
