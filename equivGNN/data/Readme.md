@@ -9,5 +9,8 @@ B8-cluster Dataset: https://github.com/curiosity54/completeness-three-center [AP
 
 Coverage Dataset: https://gitlab.com/jgreeley-group/ace_gcn [Nat. Commun. 13, 5788 (2022)]
 
+## # In-house Dataset Source [related link & references]:
+Cads & 3-fold-only Cads Dataset: ./data_Cads
+
 ## # Data preprocessing: 
-Covalent radii based graph construction process is shown in prepare_dataset.py
+Covalent radii based graph construction process for simpleads dataset is shown in prepare_dataset.py
