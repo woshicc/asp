@@ -1,5 +1,8 @@
 This repository contains the codes necessary to perform equivariant graph neural network models.
 
+* [**equivGNN**](./equivGNN) Catalytic descriptors are crucial to accelerating catalyst design. Here, we develop an equivariant graph neural network (equivGNN) to enable
+robust structure representations and achieve accurate predictions of descriptors across complex catalytic systems.
+
 # Instalation
 ```bash
 conda create -n asp python=3.9  
