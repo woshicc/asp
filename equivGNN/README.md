@@ -1,5 +1,5 @@
 This folder contains the codes necessary to perform the equivariant graph neural network (equivGNN) model, as described in our [Resolving chemical-motif similarity with enhanced atomic structure representations for accurately predicting descriptors at metallic interfaces] paper.
-![scheme](assets/equivgnn.jpg)
+![scheme](../assets/equivgnn.jpg)
 Chemical motifs at different metallic interfaces with various degrees of complexity
 
 # Example of usage:
