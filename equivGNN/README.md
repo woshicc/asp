@@ -30,7 +30,7 @@ Cads & 3-fold-only Cads Dataset: [data_Cads](./data/data_Cads)
 Covalent radii based graph construction process for simpleads dataset is shown in [prepare_dataset.py](./data/prepare_dataset.py)
 
 # References & Citing
-Please cite our paper if you find the code helpful or if you want to use the benchmark results. Thank you!
+Please cite our paper if you find the code helpful. Thank you!
 ```
 @article{woshicc1121,
 	title = {Resolving chemical-motif similarity with enhanced atomic structure representations for accurately predicting descriptors at metallic interfaces},
