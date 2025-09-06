@@ -1,6 +1,9 @@
 This folder contains the codes necessary to perform the equivariant graph neural network (equivGNN) model, as described in our [Resolving chemical-motif similarity with enhanced atomic structure representations for accurately predicting descriptors at metallic interfaces] paper.
+
+**Figure |Chemical motifs at different metallic interfaces with various degrees of complexity**
 ![scheme](../assets/equivgnn.jpg)
-Chemical motifs at different metallic interfaces with various degrees of complexity
+
+Accurately predicting catalytic descriptors with machine learning (ML) methods is significant to achieving accelerated catalyst design, where a unique representation of the atomic structure of each system is the key to developing a universal, efficient, and accurate ML model that is capable of tackling diverse degrees of complexity in heterogeneous catalysis scenarios. Herein, we integrate equivariant message-passing-enhanced atomic structure representation to resolve chemical-motif similarity in highly complex catalytic systems. Our developed equivariant graph neural network (equivGNN) model achieves mean absolute errors < 0.09 eV for different descriptors at metallic interfaces, including complex adsorbates with more diverse adsorption motifs on ordered catalyst surfaces, adsorption motifs on highly disordered surfaces of high-entropy alloys, and the complex structures of supported nanoparticles. The prediction accuracy and easy implementation attained by our model across various systems demonstrate its robustness and potentially broad applicability, laying a reasonable basis for achieving accelerated catalyst design.
 
 # Example of usage:
 Expected output in ./pre-trained/5fold/
